@@ -1,8 +1,15 @@
+import java.util.Random;
+
 public class Move {
     private Board board;
+    private Random random = new Random();
 
     public Move(Board board) {
         this.board = board;
+    }
+
+    public int roll(){
+        return random.nextInt(6) + 1;
     }
 
     //Trzeba stworzyć funkcje sprawdzającą czy field jest poprawny bo tu założyłe że jest!!!
