@@ -1,3 +1,5 @@
+package model;
+
 public class Pawn {
     private final int color;
     private int traveled;
