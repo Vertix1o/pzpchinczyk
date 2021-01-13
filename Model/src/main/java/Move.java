@@ -13,56 +13,80 @@ public class Move {
     }
 
     //Trzeba stworzyć funkcje sprawdzającą czy field jest poprawny bo tu założyłe że jest!!!
-    void moveMain(Field field, int diceRoll){
+    // moveMain zwraca true jeżeli wykonał się ruch false jeżeli nie macie pole do popisu z tym
+    //chhyba jest to w miarę dobrze jeszcze raz na to patrzyłem dzisiaj tj. 13.01.2021 i wydaje się być dorze
+    public boolean moveMain(Field field, int diceRoll){
         //warunek przjścia pionka na metę
-        if(field.getPawn(0).getTraveled()+diceRoll >= 40){
-            board.getPlayer(field.getPawnColor(0)).getFinish().add(field.getPawn(0));
-            field.setOccupied(false);
-            field.getPawnList().remove(0);
-        }else{
-            if(field.getNumberOf() + diceRoll > 39){
-                //zapętlenie listy
-                diceRoll = diceRoll - (39 - field.getNumberOf()) - 1;
-                move(field, diceRoll);
-            }else {
-                //nie zapętlanie
-                diceRoll = diceRoll + field.getNumberOf();
-                move(field, diceRoll);
+        if(diceRoll > 1){
+            if(field.getPawn(0).getTraveled()+diceRoll >= 40){
+                board.getPlayer(field.getPawnColor(0)).getFinish().add(field.getPawn(0));
+                field.getPawnList().remove(0);
+                if(field.getPawnList().size()==0) {
+                    field.setOccupied(false);
+                }
+            }else{
+                if(field.getNumberOf() + diceRoll > 39){
+                    //zapętlenie listy
+                    int move = diceRoll - (39 - field.getNumberOf()) - 1;
+                    if(move(field, move, diceRoll)){
+                        return true;
+                    } else{
+                        return false;
+                    }
+
+                }else {
+                    //nie zapętlanie
+                    int move = diceRoll + field.getNumberOf();
+                    if(move(field, move, diceRoll)){
+                        return true;
+                    } else{
+                        return false;
+                    }
+                }
             }
+        } else{
+            return false;
         }
+        return false;
     }
 
-    private void move(Field field, int move){
-        if(move == -1){
-            move = 39;
-        }
+    private boolean move(Field field, int move, int roll){
         if(isOccupied(move)){
             //sprawdzenie czy pole jest zajęte
             if(differentColor(field, move)) {
                 //sprawdzenie czy zajęte przez przeciwny kolor
                 if(MTO(move)){
                     //więcej niż jeden przeciwny pionek
-                    moveMain(field, move);
+                    if(moveMain(field, roll-1)){
+                        return true;
+                    } else{
+                        return false;
+                    }
                 } else{
-                    hit(field, move);
+                    hit(field, move, roll);
+                    return true;
                 }
             }else {
                 //ten sam kolor
-                setPawnOoField(field, move);
+                setPawnOoField(field, move, roll);
+                return true;
             }
         }else {
             //nie ma pionka na polu
-            setPawnOoField(field, move);
+            setPawnOoField(field, move, roll);
+            return true;
         }
     }
 
-    private void setPawnOoField(Field field, int move){
+    private void setPawnOoField(Field field, int move, int roll){
+        field.getPawn(0).setTraveled(roll);
         board.getBoard(move).getPawnList()
                 .add(field.getPawn(0));
         field.getPawnList().remove(0);
         if(field.getPawnList().size()==0) {
             field.setOccupied(false);
         }
+
     }
 
     private boolean differentColor(Field field, int move){
@@ -89,10 +113,11 @@ public class Move {
         }
     }
 
-    private void hit(Field field, int move){
+    private void hit(Field field, int move,int roll){
         board.getPlayer(board.getBoard(move).getPawn(0).getColor())
                 .setHome(board.getBoard(move).getPawn(0));
         board.getBoard(move).getPawnList().remove(0);
+        field.getPawn(0).setTraveled(roll);
         board.getBoard(move).getPawnList().add(field.getPawn(0));
         field.getPawnList().remove(0);
         if(field.getPawnList().size()==0) {
