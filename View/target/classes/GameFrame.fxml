@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ludo.GameFrameControl">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="849.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Program">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Zakończ" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Gracze">
+               <items>
+                  <MenuItem fx:id="players2Button" mnemonicParsing="false" onAction="#setGamePlayers" text="2" />
+                  <MenuItem fx:id="players3Button" mnemonicParsing="false" onAction="#setGamePlayers" text="3" />
+                  <MenuItem fx:id="players4Button" mnemonicParsing="false" onAction="#setGamePlayers" text="4" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Autorzy" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <VBox layoutX="30.0" layoutY="27.0" prefHeight="374.0" prefWidth="480.0">
+         <children>
+            <Pane prefHeight="145.0" prefWidth="802.0">
+               <children>
+                  <Label fx:id="label1" layoutX="110.0" layoutY="14.0" prefHeight="60.0" prefWidth="260.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Button fx:id="losuj1" layoutX="218.0" layoutY="106.0" mnemonicParsing="false" onAction="#throwDice" text="Losuj" />
+               </children>
+            </Pane>
+         </children></VBox>
+      <Pane fx:id="paneBoard" layoutX="369.0" layoutY="26.0" prefHeight="375.0" prefWidth="480.0">
+         <children>
+            <Group fx:id="rectGroup">
+               <Rectangle fx:id="p1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="317.0" layoutY="23.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="317.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p3" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="317.0" layoutY="83.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p4" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="317.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p5" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="317.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p6" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="347.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p7" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="377.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p8" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="407.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p9" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="437.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p10" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="437.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p11" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="437.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p12" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="407.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p13" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="377.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p14" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="347.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p15" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="317.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p16" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="317.0" layoutY="233.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p17" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="317.0" layoutY="263.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p18" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="317.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p19" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="317.0" layoutY="323.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p20" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="287.0" layoutY="323.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p21" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="257.0" layoutY="323.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p22" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="257.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p23" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="257.0" layoutY="263.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p24" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="257.0" layoutY="233.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p25" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="257.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p26" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="227.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p27" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="197.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p28" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="167.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p29" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="137.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p30" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="137.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p31" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="137.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p32" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="167.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p33" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="197.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p34" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="227.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p35" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="257.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p36" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="257.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p37" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="257.0" layoutY="83.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p38" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="257.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p39" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="257.0" layoutY="23.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="p40" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="287.0" layoutY="23.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            </Group>
+            <Group fx:id="finishGroup">
+               <Rectangle fx:id="f1" arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" layoutX="287.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f2" arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" layoutX="287.0" layoutY="83.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f3" arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" layoutX="287.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f4" arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" layoutX="287.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f5" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="30.0" layoutX="407.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f6" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="30.0" layoutX="377.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f7" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="30.0" layoutX="347.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f8" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="30.0" layoutX="317.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f9" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="30.0" layoutX="287.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f10" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="30.0" layoutX="287.0" layoutY="263.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f11" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="30.0" layoutX="287.0" layoutY="233.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f12" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="30.0" layoutX="287.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f13" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="30.0" layoutX="257.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f14" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="30.0" layoutX="227.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f15" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="30.0" layoutX="197.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               <Rectangle fx:id="f16" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="30.0" layoutX="167.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            </Group>
+            <Group fx:id="playersGroup">
+               <Circle fx:id="c16" fill="DODGERBLUE" layoutX="423.0" layoutY="68.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c15" fill="DODGERBLUE" layoutX="392.0" layoutY="67.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c14" fill="DODGERBLUE" layoutX="423.0" layoutY="98.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c13" fill="DODGERBLUE" layoutX="392.0" layoutY="98.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c12" fill="DODGERBLUE" layoutX="212.0" layoutY="98.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c11" fill="DODGERBLUE" layoutX="179.0" layoutY="98.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c10" fill="DODGERBLUE" layoutX="212.0" layoutY="67.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c9" fill="DODGERBLUE" layoutX="179.0" layoutY="68.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c8" fill="DODGERBLUE" layoutX="212.0" layoutY="278.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c7" fill="DODGERBLUE" layoutX="182.0" layoutY="278.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c6" fill="DODGERBLUE" layoutX="212.0" layoutY="309.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c5" fill="DODGERBLUE" layoutX="182.0" layoutY="309.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c4" fill="DODGERBLUE" layoutX="423.0" layoutY="309.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c3" fill="DODGERBLUE" layoutX="392.0" layoutY="309.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c2" fill="DODGERBLUE" layoutX="423.0" layoutY="278.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="c1" fill="DODGERBLUE" layoutX="392.0" layoutY="278.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            </Group>
+            <Group fx:id="homeGroup">
+               <Circle fx:id="h16" fill="WHITE" layoutX="423.0" layoutY="68.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h15" fill="WHITE" layoutX="392.0" layoutY="67.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h14" fill="WHITE" layoutX="423.0" layoutY="98.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h13" fill="WHITE" layoutX="392.0" layoutY="98.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h12" fill="WHITE" layoutX="212.0" layoutY="98.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h11" fill="WHITE" layoutX="179.0" layoutY="98.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h10" fill="WHITE" layoutX="212.0" layoutY="67.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h9" fill="WHITE" layoutX="179.0" layoutY="68.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h8" fill="WHITE" layoutX="212.0" layoutY="278.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h7" fill="WHITE" layoutX="182.0" layoutY="278.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h6" fill="WHITE" layoutX="212.0" layoutY="309.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h5" fill="WHITE" layoutX="182.0" layoutY="309.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h4" fill="WHITE" layoutX="423.0" layoutY="309.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h3" fill="WHITE" layoutX="392.0" layoutY="309.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h2" fill="WHITE" layoutX="423.0" layoutY="278.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="h1" fill="WHITE" layoutX="392.0" layoutY="278.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            </Group>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ludo.NumberPlayersControl">
+   <children>
+      <Button fx:id="button1" onAction="#Number2PlayersControl" layoutX="187.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="2" />
+      <Button fx:id="button2" onAction="#Number4PlayersControl" layoutX="338.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="4" />
+      <Text layoutX="241.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wybierz liczbe graczy:" wrappingWidth="117.13671875" />
+   </children>
+</AnchorPane>
