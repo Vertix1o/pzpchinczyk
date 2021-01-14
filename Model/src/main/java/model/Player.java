@@ -20,8 +20,8 @@ public class Player {
         return color;
     }
 
-    public List<Pawn> getHome() {
-        return home;
+    public Pawn getHome(int index) {
+        return home.get(index);
     }
 
     public List<Pawn> getFinish() {
