@@ -90,14 +90,20 @@
                <Rectangle fx:id="f2" arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" layoutX="287.0" layoutY="83.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                <Rectangle fx:id="f3" arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" layoutX="287.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                <Rectangle fx:id="f4" arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" layoutX="287.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            </Group>
+            <Group>
                <Rectangle fx:id="f5" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="30.0" layoutX="407.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                <Rectangle fx:id="f6" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="30.0" layoutX="377.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                <Rectangle fx:id="f7" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="30.0" layoutX="347.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                <Rectangle fx:id="f8" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="30.0" layoutX="317.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            </Group>
+            <Group>
                <Rectangle fx:id="f9" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="30.0" layoutX="287.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                <Rectangle fx:id="f10" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="30.0" layoutX="287.0" layoutY="263.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                <Rectangle fx:id="f11" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="30.0" layoutX="287.0" layoutY="233.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                <Rectangle fx:id="f12" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="30.0" layoutX="287.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            </Group>
+            <Group>
                <Rectangle fx:id="f13" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="30.0" layoutX="257.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                <Rectangle fx:id="f14" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="30.0" layoutX="227.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                <Rectangle fx:id="f15" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="30.0" layoutX="197.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
@@ -108,14 +114,20 @@
                <Circle fx:id="c15" fill="DODGERBLUE" layoutX="392.0" layoutY="67.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="c14" fill="DODGERBLUE" layoutX="423.0" layoutY="98.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="c13" fill="DODGERBLUE" layoutX="392.0" layoutY="98.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            </Group>
+            <Group>
                <Circle fx:id="c12" fill="DODGERBLUE" layoutX="212.0" layoutY="98.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="c11" fill="DODGERBLUE" layoutX="179.0" layoutY="98.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="c10" fill="DODGERBLUE" layoutX="212.0" layoutY="67.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="c9" fill="DODGERBLUE" layoutX="179.0" layoutY="68.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            </Group>
+            <Group>
                <Circle fx:id="c8" fill="DODGERBLUE" layoutX="212.0" layoutY="278.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="c7" fill="DODGERBLUE" layoutX="182.0" layoutY="278.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="c6" fill="DODGERBLUE" layoutX="212.0" layoutY="309.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="c5" fill="DODGERBLUE" layoutX="182.0" layoutY="309.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            </Group>
+            <Group>
                <Circle fx:id="c4" fill="DODGERBLUE" layoutX="423.0" layoutY="309.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="c3" fill="DODGERBLUE" layoutX="392.0" layoutY="309.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="c2" fill="DODGERBLUE" layoutX="423.0" layoutY="278.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
@@ -126,14 +138,20 @@
                <Circle fx:id="h15" fill="WHITE" layoutX="392.0" layoutY="67.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="h14" fill="WHITE" layoutX="423.0" layoutY="98.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="h13" fill="WHITE" layoutX="392.0" layoutY="98.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            </Group>
+            <Group>
                <Circle fx:id="h12" fill="WHITE" layoutX="212.0" layoutY="98.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="h11" fill="WHITE" layoutX="179.0" layoutY="98.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="h10" fill="WHITE" layoutX="212.0" layoutY="67.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="h9" fill="WHITE" layoutX="179.0" layoutY="68.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            </Group>
+            <Group>
                <Circle fx:id="h8" fill="WHITE" layoutX="212.0" layoutY="278.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="h7" fill="WHITE" layoutX="182.0" layoutY="278.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="h6" fill="WHITE" layoutX="212.0" layoutY="309.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="h5" fill="WHITE" layoutX="182.0" layoutY="309.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            </Group>
+            <Group>
                <Circle fx:id="h4" fill="WHITE" layoutX="423.0" layoutY="309.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="h3" fill="WHITE" layoutX="392.0" layoutY="309.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="h2" fill="WHITE" layoutX="423.0" layoutY="278.0" opacity="0.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />

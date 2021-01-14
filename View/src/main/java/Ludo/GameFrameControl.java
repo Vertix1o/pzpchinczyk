@@ -125,15 +125,19 @@ public class GameFrameControl {
     @FXML MenuItem players3Button;
     @FXML MenuItem players4Button;
 
-
     private Board board;
     private Move move;
     private List<Rectangle> rectangles = new ArrayList<>();
-    private List<Rectangle> finishes = new ArrayList<>();
-    private List<Circle> homes = new ArrayList<>();
-    private List<Circle> circles = new ArrayList<>();
+//    private List<List<Rectangle>> finishes = new ArrayList<>();
+//    private List<List<Circle>> homes = new ArrayList<>();
+//    private List<List<Circle>> circles = new ArrayList<>();
+    private ArrayList<ArrayList<Rectangle>> finishes = new ArrayList<>(4);
+    private ArrayList<ArrayList<Circle>> homes = new ArrayList<>(4);
+    private ArrayList<ArrayList<Circle>> circles = new ArrayList<>(4);
+
     private int playerIterator;
     private int numberOfPlayers;
+
 
     public GameFrameControl() {
 
@@ -181,54 +185,60 @@ public class GameFrameControl {
         rectangles.add(p38);
         rectangles.add(p39);
         rectangles.add(p40);
-        homes.add(h1);
-        homes.add(h2);
-        homes.add(h3);
-        homes.add(h4);
-        homes.add(h5);
-        homes.add(h6);
-        homes.add(h7);
-        homes.add(h8);
-        homes.add(h9);
-        homes.add(h10);
-        homes.add(h11);
-        homes.add(h12);
-        homes.add(h13);
-        homes.add(h14);
-        homes.add(h15);
-        homes.add(h16);
-        circles.add(c1);
-        circles.add(c2);
-        circles.add(c3);
-        circles.add(c4);
-        circles.add(c5);
-        circles.add(c6);
-        circles.add(c7);
-        circles.add(c8);
-        circles.add(c9);
-        circles.add(c10);
-        circles.add(c11);
-        circles.add(c12);
-        circles.add(c13);
-        circles.add(c14);
-        circles.add(c15);
-        circles.add(c16);
-        finishes.add(f1);
-        finishes.add(f2);
-        finishes.add(f3);
-        finishes.add(f4);
-        finishes.add(f5);
-        finishes.add(f6);
-        finishes.add(f7);
-        finishes.add(f8);
-        finishes.add(f9);
-        finishes.add(f10);
-        finishes.add(f11);
-        finishes.add(f12);
-        finishes.add(f13);
-        finishes.add(f14);
-        finishes.add(f15);
-        finishes.add(f16);
+
+        for(int i = 0; i < 4; i++) {
+            homes.add(new ArrayList<>());
+            finishes.add(new ArrayList<>());
+            circles.add(new ArrayList<>());
+        }
+        homes.get(0).add(h1);
+        homes.get(0).add(h2);
+        homes.get(0).add(h3);
+        homes.get(0).add(h4);
+        homes.get(1).add(h5);
+        homes.get(1).add(h6);
+        homes.get(1).add(h7);
+        homes.get(1).add(h8);
+        homes.get(2).add(h9);
+        homes.get(2).add(h10);
+        homes.get(2).add(h11);
+        homes.get(2).add(h12);
+        homes.get(3).add(h13);
+        homes.get(3).add(h14);
+        homes.get(3).add(h15);
+        homes.get(3).add(h16);
+        circles.get(0).add(c1);
+        circles.get(0).add(c2);
+        circles.get(0).add(c3);
+        circles.get(0).add(c4);
+        circles.get(1).add(c5);
+        circles.get(1).add(c6);
+        circles.get(1).add(c7);
+        circles.get(1).add(c8);
+        circles.get(2).add(c9);
+        circles.get(2).add(c10);
+        circles.get(2).add(c11);
+        circles.get(3).add(c12);
+        circles.get(3).add(c13);
+        circles.get(3).add(c14);
+        circles.get(3).add(c15);
+        circles.get(3).add(c16);
+        finishes.get(0).add(f1);
+        finishes.get(0).add(f2);
+        finishes.get(0).add(f3);
+        finishes.get(0).add(f4);
+        finishes.get(1).add(f5);
+        finishes.get(1).add(f6);
+        finishes.get(1).add(f7);
+        finishes.get(1).add(f8);
+        finishes.get(2).add(f9);
+        finishes.get(2).add(f10);
+        finishes.get(2).add(f11);
+        finishes.get(2).add(f12);
+        finishes.get(3).add(f13);
+        finishes.get(3).add(f14);
+        finishes.get(3).add(f15);
+        finishes.get(3).add(f16);
 
         System.out.println(rectangles.size());
 
@@ -245,7 +255,7 @@ public class GameFrameControl {
         while(randomNumber < 6 || tura < 3) {
             randomNumber = move.roll();
             label1.setText("Gracz " + x + ". wylosował: " + randomNumber);
-            move();
+//            move();
             if(randomNumber < 6) {
                 playerIterator++;
                 break;
@@ -284,6 +294,22 @@ public class GameFrameControl {
     private void setPawnToFinish(int from, int to) {
         circles.get(from).setLayoutX(finishes.get(to).getLayoutX()+15);
         circles.get(from).setLayoutY(finishes.get(to).getLayoutY()+15);
+    }
+
+    private void update() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (i == 0) {
+                    circles.get(i).get(j).setFill("");
+                } else if (i == 1) {
+                    circles.get(i).get(j).setFill("");
+                } else if (i == 2) {
+                    circles.get(i).get(j).setFill("");
+                } else if (i == 3) {
+                    circles.get(i).get(j).setFill("");
+                }
+            }
+        }
     }
 
     private void move(int from, int to) {
