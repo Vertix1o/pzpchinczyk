@@ -1,4 +1,0 @@
-module ViewProject {
-
-    requires ModelProject;
-}

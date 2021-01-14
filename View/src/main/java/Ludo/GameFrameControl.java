@@ -69,22 +69,22 @@ public class GameFrameControl {
     @FXML Rectangle p38;
     @FXML Rectangle p39;
     @FXML Rectangle p40;
-    @FXML Rectangle h1;
-    @FXML Rectangle h2;
-    @FXML Rectangle h3;
-    @FXML Rectangle h4;
-    @FXML Rectangle h5;
-    @FXML Rectangle h6;
-    @FXML Rectangle h7;
-    @FXML Rectangle h8;
-    @FXML Rectangle h9;
-    @FXML Rectangle h10;
-    @FXML Rectangle h11;
-    @FXML Rectangle h12;
-    @FXML Rectangle h13;
-    @FXML Rectangle h14;
-    @FXML Rectangle h15;
-    @FXML Rectangle h16;
+    @FXML Rectangle f1;
+    @FXML Rectangle f2;
+    @FXML Rectangle f3;
+    @FXML Rectangle f4;
+    @FXML Rectangle f5;
+    @FXML Rectangle f6;
+    @FXML Rectangle f7;
+    @FXML Rectangle f8;
+    @FXML Rectangle f9;
+    @FXML Rectangle f10;
+    @FXML Rectangle f11;
+    @FXML Rectangle f12;
+    @FXML Rectangle f13;
+    @FXML Rectangle f14;
+    @FXML Rectangle f15;
+    @FXML Rectangle f16;
     @FXML Circle c1;
     @FXML Circle c2;
     @FXML Circle c3;
@@ -101,7 +101,22 @@ public class GameFrameControl {
     @FXML Circle c14;
     @FXML Circle c15;
     @FXML Circle c16;
-
+    @FXML Circle h1;
+    @FXML Circle h2;
+    @FXML Circle h3;
+    @FXML Circle h4;
+    @FXML Circle h5;
+    @FXML Circle h6;
+    @FXML Circle h7;
+    @FXML Circle h8;
+    @FXML Circle h9;
+    @FXML Circle h10;
+    @FXML Circle h11;
+    @FXML Circle h12;
+    @FXML Circle h13;
+    @FXML Circle h14;
+    @FXML Circle h15;
+    @FXML Circle h16;
 
     @FXML Group homeGroup;
     @FXML Group rectGroup;
@@ -114,9 +129,11 @@ public class GameFrameControl {
     private Board board;
     private Move move;
     private List<Rectangle> rectangles = new ArrayList<>();
-    private List<Rectangle> homes = new ArrayList<>();
+    private List<Rectangle> finishes = new ArrayList<>();
+    private List<Circle> homes = new ArrayList<>();
     private List<Circle> circles = new ArrayList<>();
-    private List<Field> fields;
+    private int playerIterator;
+    private int numberOfPlayers;
 
     public GameFrameControl() {
 
@@ -196,18 +213,46 @@ public class GameFrameControl {
         circles.add(c14);
         circles.add(c15);
         circles.add(c16);
-
+        finishes.add(f1);
+        finishes.add(f2);
+        finishes.add(f3);
+        finishes.add(f4);
+        finishes.add(f5);
+        finishes.add(f6);
+        finishes.add(f7);
+        finishes.add(f8);
+        finishes.add(f9);
+        finishes.add(f10);
+        finishes.add(f11);
+        finishes.add(f12);
+        finishes.add(f13);
+        finishes.add(f14);
+        finishes.add(f15);
+        finishes.add(f16);
 
         System.out.println(rectangles.size());
 
-//        paneBoard.addEventFilter(MouseEvent.MOUSE_EXITED, this::leaveBoard);
-//        paneBoard.addEventFilter(MouseEvent.MOUSE_RELEASED, this::checkReleaseOutOfBoard);
     }
 
     public void throwDice(ActionEvent event) {
+        int randomNumber = 0;
+        int tura = 0;
 
-//        label1.setText("Gracz 1. wylosował: " + );
-
+        if(playerIterator == numberOfPlayers) {
+            playerIterator = 0;
+        }
+        String x = String.valueOf(playerIterator + 1);
+        while(randomNumber < 6 || tura < 3) {
+            randomNumber = move.roll();
+            label1.setText("Gracz " + x + ". wylosował: " + randomNumber);
+            move();
+            if(randomNumber < 6) {
+                playerIterator++;
+                break;
+            } else {
+                tura++;
+            }
+        }
     }
 
     public void setGamePlayers(ActionEvent event) {
@@ -215,19 +260,35 @@ public class GameFrameControl {
 
         if(button.getId().equals("players2Button")) {
             board = new Board(2);
+            numberOfPlayers = 2;
         } else if(button.getId().equals("players3Button")) {
             board = new Board(3);
+            numberOfPlayers = 3;
         } else if(button.getId().equals("players4Button")) {
             board = new Board(4);
+            numberOfPlayers = 4;
         }
+        move = new Move(board);
     }
 
-    private void setPawn(int from, int to) {
-        circles.get(from).setLayoutX(homes.get(to).getLayoutX());
-        circles.get(from).setLayoutY(homes.get(to).getLayoutY());
+    private void setPawnToHome(int from, int to) {
+        circles.get(from).setLayoutX(homes.get(to).getLayoutX()+15);
+        circles.get(from).setLayoutY(homes.get(to).getLayoutY()+15);
     }
 
-    private void movePiece() {
+    private void setPawnToField(int from, int to) {
+        circles.get(from).setLayoutX(rectangles.get(to).getLayoutX()+15);
+        circles.get(from).setLayoutY(rectangles.get(to).getLayoutY()+15);
+    }
 
+    private void setPawnToFinish(int from, int to) {
+        circles.get(from).setLayoutX(finishes.get(to).getLayoutX()+15);
+        circles.get(from).setLayoutY(finishes.get(to).getLayoutY()+15);
+    }
+
+    private void move(int from, int to) {
+        if(playerIterator == 0) {
+
+        }
     }
 }

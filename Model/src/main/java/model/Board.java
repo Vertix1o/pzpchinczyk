@@ -16,6 +16,7 @@ public class Board {
             Player p = new Player(i);
             playerList.add(p);
         }
+        System.out.println("board dziala");
     }
 
     public Field getBoard(int fieldNo) {

@@ -13,8 +13,6 @@
     <artifactId>ViewProject</artifactId>
     <packaging>jar</packaging>
 
-
-
     <dependencies>
         <dependency>
             <groupId>Ludo</groupId>
