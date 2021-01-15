@@ -8,27 +8,26 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import model.*;
 
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameFrameControl {
 
-    @FXML VBox vbox;
-
     @FXML Pane paneBoard; // contains circle and rectangle
-
-    @FXML Circle circle;
-
     @FXML Button losuj1;
     @FXML Label label1;
-
+    @FXML Label label2;
+    @FXML TextField textField;
     @FXML Rectangle p1;
     @FXML Rectangle p2;
     @FXML Rectangle p3;
@@ -85,22 +84,6 @@ public class GameFrameControl {
     @FXML Rectangle f14;
     @FXML Rectangle f15;
     @FXML Rectangle f16;
-    @FXML Circle c1;
-    @FXML Circle c2;
-    @FXML Circle c3;
-    @FXML Circle c4;
-    @FXML Circle c5;
-    @FXML Circle c6;
-    @FXML Circle c7;
-    @FXML Circle c8;
-    @FXML Circle c9;
-    @FXML Circle c10;
-    @FXML Circle c11;
-    @FXML Circle c12;
-    @FXML Circle c13;
-    @FXML Circle c14;
-    @FXML Circle c15;
-    @FXML Circle c16;
     @FXML Circle h1;
     @FXML Circle h2;
     @FXML Circle h3;
@@ -117,10 +100,8 @@ public class GameFrameControl {
     @FXML Circle h14;
     @FXML Circle h15;
     @FXML Circle h16;
-
     @FXML Group homeGroup;
     @FXML Group rectGroup;
-    @FXML Group circGroup;
     @FXML MenuItem players2Button;
     @FXML MenuItem players3Button;
     @FXML MenuItem players4Button;
@@ -128,16 +109,14 @@ public class GameFrameControl {
     private Board board;
     private Move move;
     private List<Rectangle> rectangles = new ArrayList<>();
-//    private List<List<Rectangle>> finishes = new ArrayList<>();
-//    private List<List<Circle>> homes = new ArrayList<>();
-//    private List<List<Circle>> circles = new ArrayList<>();
     private ArrayList<ArrayList<Rectangle>> finishes = new ArrayList<>(4);
     private ArrayList<ArrayList<Circle>> homes = new ArrayList<>(4);
-    private ArrayList<ArrayList<Circle>> circles = new ArrayList<>(4);
-
-    private int playerIterator;
-    private int numberOfPlayers;
-
+    private Player actualPlayer;
+    private Checker checker = new Checker();
+    private int randomNumber;
+    private int chooseField;
+    private Pop pop = new Pop();
+    private int tura = 0;
 
     public GameFrameControl() {
 
@@ -185,11 +164,9 @@ public class GameFrameControl {
         rectangles.add(p38);
         rectangles.add(p39);
         rectangles.add(p40);
-
         for(int i = 0; i < 4; i++) {
             homes.add(new ArrayList<>());
             finishes.add(new ArrayList<>());
-            circles.add(new ArrayList<>());
         }
         homes.get(0).add(h1);
         homes.get(0).add(h2);
@@ -207,22 +184,6 @@ public class GameFrameControl {
         homes.get(3).add(h14);
         homes.get(3).add(h15);
         homes.get(3).add(h16);
-        circles.get(0).add(c1);
-        circles.get(0).add(c2);
-        circles.get(0).add(c3);
-        circles.get(0).add(c4);
-        circles.get(1).add(c5);
-        circles.get(1).add(c6);
-        circles.get(1).add(c7);
-        circles.get(1).add(c8);
-        circles.get(2).add(c9);
-        circles.get(2).add(c10);
-        circles.get(2).add(c11);
-        circles.get(3).add(c12);
-        circles.get(3).add(c13);
-        circles.get(3).add(c14);
-        circles.get(3).add(c15);
-        circles.get(3).add(c16);
         finishes.get(0).add(f1);
         finishes.get(0).add(f2);
         finishes.get(0).add(f3);
@@ -239,82 +200,142 @@ public class GameFrameControl {
         finishes.get(3).add(f14);
         finishes.get(3).add(f15);
         finishes.get(3).add(f16);
-
-        System.out.println(rectangles.size());
-
     }
+
+//        checker.checkWin(board.getPlayerList());
+//        label2.setText("Wygrał gracz: " + checker.getIdWon().getColor());
 
     public void throwDice(ActionEvent event) {
-        int randomNumber = 0;
-        int tura = 0;
-
-        if(playerIterator == numberOfPlayers) {
-            playerIterator = 0;
-        }
-        String x = String.valueOf(playerIterator + 1);
-        while(randomNumber < 6 || tura < 3) {
-            randomNumber = move.roll();
-            label1.setText("Gracz " + x + ". wylosował: " + randomNumber);
-//            move();
-            if(randomNumber < 6) {
-                playerIterator++;
-                break;
-            } else {
-                tura++;
-            }
-        }
-    }
-
-    public void setGamePlayers(ActionEvent event) {
-        MenuItem button = (MenuItem) event.getSource();
-
-        if(button.getId().equals("players2Button")) {
-            board = new Board(2);
-            numberOfPlayers = 2;
-        } else if(button.getId().equals("players3Button")) {
-            board = new Board(3);
-            numberOfPlayers = 3;
-        } else if(button.getId().equals("players4Button")) {
-            board = new Board(4);
-            numberOfPlayers = 4;
-        }
-        move = new Move(board);
-    }
-
-    private void setPawnToHome(int from, int to) {
-        circles.get(from).setLayoutX(homes.get(to).getLayoutX()+15);
-        circles.get(from).setLayoutY(homes.get(to).getLayoutY()+15);
-    }
-
-    private void setPawnToField(int from, int to) {
-        circles.get(from).setLayoutX(rectangles.get(to).getLayoutX()+15);
-        circles.get(from).setLayoutY(rectangles.get(to).getLayoutY()+15);
-    }
-
-    private void setPawnToFinish(int from, int to) {
-        circles.get(from).setLayoutX(finishes.get(to).getLayoutX()+15);
-        circles.get(from).setLayoutY(finishes.get(to).getLayoutY()+15);
-    }
-
-    private void update() {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (i == 0) {
-                    circles.get(i).get(j).setFill("");
-                } else if (i == 1) {
-                    circles.get(i).get(j).setFill("");
-                } else if (i == 2) {
-                    circles.get(i).get(j).setFill("");
-                } else if (i == 3) {
-                    circles.get(i).get(j).setFill("");
+        randomNumber = move.roll();
+        String x = String.valueOf(actualPlayer.getColor() + 1);
+        label1.setText("Gracz " + x + ". wylosował: " + randomNumber);
+        if(actualPlayer.getHomeList().size() == 4){
+            if(randomNumber == 6){
+                move.offHome(actualPlayer);
+                update();
+            }else {
+                if(actualPlayer.getColor() + 1 >= board.getPlayerList().size()){
+                    actualPlayer = board.getPlayer(0);
+                }else {
+                    actualPlayer = board.getPlayer(actualPlayer.getColor() + 1);
                 }
             }
         }
     }
 
-    private void move(int from, int to) {
-        if(playerIterator == 0) {
-
+    public void offHouse(ActionEvent event){
+        if(randomNumber == 6){
+            move.offHome(actualPlayer);
+            update();
+        }else {
+            Pop.messageBox("Zła wartość","Niepoprawna wylosowana wartość");
         }
+
+    }
+
+    public void abadonMove(ActionEvent event){
+        if(actualPlayer.getColor() + 1 >= board.getPlayerList().size()){
+            actualPlayer = board.getPlayer(0);
+        }else {
+            actualPlayer = board.getPlayer(actualPlayer.getColor() + 1);
+        }
+    }
+
+    public void choiceOfField(ActionEvent event){
+        chooseField = Integer.parseInt(textField.getText());
+    }
+
+    public void setMove(ActionEvent event){
+        if(board.getBoard(chooseField).getPawn().getColor() == actualPlayer.getColor()){
+            if(move.moveMain(board.getBoard(chooseField),randomNumber)){
+                if(randomNumber==6){
+                    tura++;
+                }
+            }else {
+                Pop.messageBox("Zła wartość","Podane przez ciebie pole jest niewłaściwe");
+            }
+        }else {
+            Pop.messageBox("Zła wartość","Podane przez ciebie pole jest niewłaściwe");
+        }
+        if(tura == 3 || randomNumber != 6){
+            tura = 0;
+            if(actualPlayer.getColor() + 1 >= board.getPlayerList().size()){
+                actualPlayer = board.getPlayer(0);
+            }else {
+                actualPlayer = board.getPlayer(actualPlayer.getColor() + 1);
+            }
+        }
+        update();
+    }
+
+    public void setGamePlayers(ActionEvent event) {
+        MenuItem button = (MenuItem) event.getSource();
+        if(button.getId().equals("players2Button")) {
+            board = new Board(2);
+        } else if(button.getId().equals("players3Button")) {
+            board = new Board(3);
+        } else if(button.getId().equals("players4Button")) {
+            board = new Board(4);
+        }
+        move = new Move(board);
+        actualPlayer = board.getPlayer(0);
+        label2.setText("Ruch gracza: " + actualPlayer.getColor() + 1);
+    }
+
+    private void update() {
+       for(int i = 0; i<40; i++){
+           if(board.getBoard(i).isOccupied()){
+               int kolor = board.getBoard(i).getPawnColor();
+               switch(kolor){
+                   case 0:
+                       rectangles.get(i).setFill(Color.RED);
+                       break;
+                   case 1:
+                       rectangles.get(i).setFill(Color.YELLOW);
+                       break;
+                   case 2:
+                       rectangles.get(i).setFill(Color.GREEN);
+                       break;
+                   case 3:
+                       rectangles.get(i).setFill(Color.BLUE);
+                       break;
+                   default:
+                       rectangles.get(i).setFill(Color.WHITE);
+                       break;
+               }
+           } else{
+               rectangles.get(i).setFill(Color.WHITE);
+           }
+       }
+       for(int i = 0; i < board.getPlayerList().size() ; i++){
+           for(int j = 0; j < board.getPlayer(i).getFinishList().size() ; j++){
+               switch(i){
+                   case 0:
+                       finishes.get(i).get(j).setFill(Color.DARKRED);
+                       homes.get(i).get(j).setFill(Color.RED);
+                       break;
+                   case 1:
+                       finishes.get(i).get(j).setFill(Color.ORANGE);
+                       homes.get(i).get(j).setFill(Color.YELLOW);
+                       break;
+                   case 2:
+                       finishes.get(i).get(j).setFill(Color.DARKGREEN);
+                       homes.get(i).get(j).setFill(Color.GREEN);
+                       break;
+                   case 3:
+                       finishes.get(i).get(j).setFill(Color.DARKBLUE);
+                       homes.get(i).get(j).setFill(Color.BLUE);
+                       break;
+                   default:
+                       finishes.get(i).get(j).setFill(Color.WHITE);
+                       homes.get(i).get(j).setFill(Color.WHITE);
+                       break;
+               }
+           }
+           for(int j = board.getPlayer(i).getFinishList().size(); j > 4 ; j++){
+               finishes.get(i).get(j).setFill(Color.WHITE);
+               homes.get(i).get(j).setFill(Color.WHITE);
+           }
+       }
     }
 }

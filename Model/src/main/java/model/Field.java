@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Field {
-    private List<Pawn> pawn = new ArrayList<Pawn>();
+    private Pawn pawn = null;
     private boolean isOccupied;
     private int numberOf;
 
@@ -15,12 +15,12 @@ public class Field {
         this.numberOf = numberOf;
     }
 
-    public Pawn getPawn(int index) {
-        return pawn.get(index);
+    public Pawn getPawn() {
+        return pawn;
     }
 
-    public List<Pawn> getPawnList() {
-        return pawn;
+    public void setPawn(Pawn pawn) {
+        this.pawn = pawn;
     }
 
     public boolean isOccupied() {
@@ -31,8 +31,8 @@ public class Field {
         return numberOf;
     }
 
-    public int getPawnColor(int index){
-        return pawn.get(index).getColor();
+    public int getPawnColor(){
+        return pawn.getColor();
     }
 
     public void setOccupied(boolean occupied) {

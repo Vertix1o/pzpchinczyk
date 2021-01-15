@@ -24,7 +24,11 @@ public class Player {
         return home.get(index);
     }
 
-    public List<Pawn> getFinish() {
+    public List<Pawn> getHomeList() {
+        return home;
+    }
+
+    public List<Pawn> getFinishList() {
         return finish;
     }
 

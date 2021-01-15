@@ -20,12 +20,10 @@ public class Move {
     public boolean moveMain(Field field, int diceRoll){
         //warunek przjścia pionka na metę
         if(diceRoll >= 1){
-            if(field.getPawn(0).getTraveled()+diceRoll >= 40){
-                board.getPlayer(field.getPawnColor(0)).getFinish().add(field.getPawn(0));
-                field.getPawnList().remove(0);
-                if(field.getPawnList().size()==0) {
-                    field.setOccupied(false);
-                }
+            if(field.getPawn().getTraveled()+diceRoll >= 40){
+                board.getPlayer(field.getPawnColor()).getFinishList().add(field.getPawn());
+                field.setPawn(null);
+                field.setOccupied(false);
             }else{
                 int move;
                 if(field.getNumberOf() + diceRoll > 39){
@@ -45,71 +43,54 @@ public class Move {
 
     private boolean move(Field field, int move, int roll){
         if(isOccupied(move) && differentColor(field, move)){
-            //sprawdzenie czy pole jest zajęte
-            //sprawdzenie czy zajęte przez przeciwny kolor
-            if(MTO(move)){
-                //więcej niż jeden przeciwny pionek
-                return false;
-            } else{
-                hit(field, move, roll);
-                return true;
-            }
-        }else {
-            //nie ma pionka na polu
+            hit(field, move, roll);
+            return true;
+        } else if(isOccupied(move)){
+            return false;
+        } else {
             setPawnOoField(field, move, roll);
             return true;
         }
     }
 
-
     private void setPawnOoField(Field field, int move, int roll){
-        field.getPawn(0).setTraveled(roll);
-        board.getBoard(move).getPawnList()
-                .add(field.getPawn(0));
+        field.getPawn().setTraveled(roll);
+        board.getBoard(move).setPawn((field.getPawn()));
         board.getBoard(move).setOccupied(true);
-        field.getPawnList().remove(0);
-        if(field.getPawnList().size()==0) {
-            field.setOccupied(false);
-        }
-
+        field.setPawn(null);
+        field.setOccupied(false);
     }
 
     private boolean differentColor(Field field, int move){
-        return board.getBoard(move).getPawn(0).getColor() != field.getPawn(0).getColor();
+        return board.getBoard(move).getPawn().getColor() != field.getPawn().getColor();
     }
 
     private boolean differentColor1(int color, int move){
-        return board.getBoard(move).getPawn(0).getColor() != color;
+        return board.getBoard(move).getPawn().getColor() != color;
     }
 
     private boolean isOccupied(int move){
         return board.getBoard(move).isOccupied();
     }
 
-    private boolean MTO(int move){
-        return board.getBoard(move).getPawnList().size() > 1;
-    }
-
     private void hit(Field field, int move,int roll){
-        board.getPlayer(board.getBoard(move).getPawn(0).getColor())
-                .setHome(board.getBoard(move).getPawn(0));
-        board.getBoard(move).getPawnList().remove(0);
-        field.getPawn(0).setTraveled(roll);
-        board.getBoard(move).getPawnList().add(field.getPawn(0));
-        field.getPawnList().remove(0);
-        if(field.getPawnList().size()==0) {
-            field.setOccupied(false);
-        }
+        board.getPlayer(board.getBoard(move).getPawn().getColor())
+                .setHome(board.getBoard(move).getPawn());
+        board.getBoard(move).setPawn(null);
+        field.getPawn().setTraveled(roll);
+        board.getBoard(move).setPawn(field.getPawn());
+        field.setPawn(null);
+        field.setOccupied(false);
     }
 
     private void hit1(Player player, int move){
-        board.getPlayer(board.getBoard(move).getPawn(0).getColor())
-                .setHome(board.getBoard(move).getPawn(0));
-        board.getBoard(move).getPawnList().remove(0);
-        board.getBoard(move).getPawnList().add(player.getHome(0));
+        board.getPlayer(board.getBoard(move).getPawn().getColor())
+                .setHome(board.getBoard(move).getPawn());
+        board.getBoard(move).setPawn(null);
+        board.getBoard(move).setPawn(player.getHome(0));
     }
 
-    private boolean offHome(Player player){
+    public boolean offHome(Player player){
         int id = player.getColor();
         switch (id){
             case 0:
@@ -127,16 +108,14 @@ public class Move {
 
     private boolean offHomeMove(Player player, int id, int start){
         if(isOccupied(start) && differentColor1(id,start)){
-            if(MTO(start)){
-                return false;
-            } else{
-                hit1(player,0);
+                hit1(player,start);
                 return true;
-            }
-        } else{
-            board.getBoard(start).setOccupied(true);
-            board.getBoard(start).getPawnList().add(player.getHome(0));
-            return true;
+            }else if(isOccupied(start)){
+                return false;
+            }else {
+                board.getBoard(start).setOccupied(true);
+                board.getBoard(start).setPawn(player.getHome(0));
+                return true;
         }
     }
 }
