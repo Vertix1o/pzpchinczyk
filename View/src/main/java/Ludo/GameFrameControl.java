@@ -114,7 +114,7 @@ public class GameFrameControl {
     private Player actualPlayer;
     private Checker checker = new Checker();
     private int randomNumber;
-    private int chooseField;
+    private Field chooseField;
     private Pop pop = new Pop();
     private int tura = 0;
 
@@ -202,35 +202,32 @@ public class GameFrameControl {
         finishes.get(3).add(f16);
     }
 
-//        checker.checkWin(board.getPlayerList());
-//        label2.setText("Wygrał gracz: " + checker.getIdWon().getColor());
-
     public void throwDice(ActionEvent event) {
         randomNumber = move.roll();
         String x = String.valueOf(actualPlayer.getColor() + 1);
         label1.setText("Gracz " + x + ". wylosował: " + randomNumber);
-        if(actualPlayer.getHomeList().size() == 4){
-            if(randomNumber == 6){
-                move.offHome(actualPlayer);
-                update();
-            }else {
-                if(actualPlayer.getColor() + 1 >= board.getPlayerList().size()){
-                    actualPlayer = board.getPlayer(0);
-                }else {
-                    actualPlayer = board.getPlayer(actualPlayer.getColor() + 1);
-                }
-            }
-        }
+//        if(actualPlayer.getHomeList().size() == 4){
+//            if(randomNumber == 6){
+//                move.offHome(actualPlayer);
+//                update();
+//            }else {
+//                if(actualPlayer.getColor() + 1 >= board.getPlayerList().size()){
+//                    actualPlayer = board.getPlayer(0);
+//                }else {
+//                    actualPlayer = board.getPlayer(actualPlayer.getColor() + 1);
+//                }
+//            }
+//        }
+        update();
     }
 
     public void offHouse(ActionEvent event){
         if(randomNumber == 6){
             move.offHome(actualPlayer);
-            update();
         }else {
             Pop.messageBox("Zła wartość","Niepoprawna wylosowana wartość");
         }
-
+        update();
     }
 
     public void abadonMove(ActionEvent event){
@@ -239,23 +236,37 @@ public class GameFrameControl {
         }else {
             actualPlayer = board.getPlayer(actualPlayer.getColor() + 1);
         }
+        update();
     }
 
     public void choiceOfField(ActionEvent event){
-        chooseField = Integer.parseInt(textField.getText());
+        if(board.getBoard(Integer.parseInt(textField.getText()) - 1).isOccupied()){
+            if(actualPlayer.getColor() == board.getBoard(Integer.parseInt(textField.getText()) - 1).getPawnColor()){
+                chooseField = board.getBoard(Integer.parseInt(textField.getText()) - 1);
+            } else{
+
+            }
+        } else{
+            Pop.messageBox("Zła wartość","Podane przez ciebie pole jest niewłaściwe");
+        }
+        update();
     }
 
-    public void setMove(ActionEvent event){
-        if(board.getBoard(chooseField).getPawn().getColor() == actualPlayer.getColor()){
-            if(move.moveMain(board.getBoard(chooseField),randomNumber)){
+    public boolean setMove(ActionEvent event){
+        if(chooseField.getPawn().getColor() == actualPlayer.getColor()){
+            if(move.moveMain(chooseField,randomNumber)){
                 if(randomNumber==6){
                     tura++;
                 }
             }else {
                 Pop.messageBox("Zła wartość","Podane przez ciebie pole jest niewłaściwe");
+                update();
+                return false;
             }
         }else {
             Pop.messageBox("Zła wartość","Podane przez ciebie pole jest niewłaściwe");
+            update();
+            return false;
         }
         if(tura == 3 || randomNumber != 6){
             tura = 0;
@@ -266,6 +277,7 @@ public class GameFrameControl {
             }
         }
         update();
+        return true;
     }
 
     public void setGamePlayers(ActionEvent event) {
@@ -279,7 +291,7 @@ public class GameFrameControl {
         }
         move = new Move(board);
         actualPlayer = board.getPlayer(0);
-        label2.setText("Ruch gracza: " + actualPlayer.getColor() + 1);
+        label2.setText("Ruch gracza: " + (actualPlayer.getColor() + 1));
     }
 
     private void update() {
@@ -336,6 +348,11 @@ public class GameFrameControl {
                finishes.get(i).get(j).setFill(Color.WHITE);
                homes.get(i).get(j).setFill(Color.WHITE);
            }
+       }
+       label2.setText("Ruch gracza: " + (actualPlayer.getColor() + 1));
+       checker.checkWin(board.getPlayerList());
+       if(checker.getIdWon() != null){
+           label2.setText("Wygrał gracz: " + checker.getIdWon().getColor());
        }
     }
 }
